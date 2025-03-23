@@ -18,6 +18,10 @@ button {
   width: max(200px, 70vw);
 }
 
+#comments p {
+  border-top: 1px solid #00000088;
+}
+
 footer,
 header {
   background-color: #65e09288;
