@@ -36,6 +36,8 @@ export async function wakeUpBackend() {
 }
 
 export async function getAllPosts() {
-  const urlExtension = "post";
-  
+  const urlExtension = "post/all";
+  const method = "GET";
+  const posts = await getJsonResponse(urlExtension, method);
+  return posts;
 }

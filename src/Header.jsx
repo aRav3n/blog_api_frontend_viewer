@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { wakeUpBackend } from "./functions";
+import { wakeUpBackend } from "./apiFunctions";
 
 function App() {
   useEffect(() => {
