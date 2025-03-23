@@ -13,7 +13,7 @@ function CommentSection({ postId }) {
 
   useEffect(() => {
     getComments(postId);
-  }, []);
+  }, [postId]);
 
   function NewComment() {
     const [commentContent, setCommentContent] = useState("");
