@@ -4,14 +4,13 @@ export async function getJsonResponse(urlExtension, method, bodyObject) {
   const url = `${apiUrl}${urlExtension}`;
   const fetchObject = {
     method,
+    headers: {
+      "Content-Type": "application/json",
+    },
   };
   if (method !== "GET") {
     const body = JSON.stringify(bodyObject);
     fetchObject.body = body;
-  } else {
-    fetchObject.headers = {
-      "Content-Type": "application/json",
-    };
   }
 
   try {
@@ -40,4 +39,26 @@ export async function getAllPosts() {
   const method = "GET";
   const posts = await getJsonResponse(urlExtension, method);
   return posts;
+}
+
+export async function getPostComments(postId) {
+  const urlExtension = `comment/${postId}`;
+  const method = "GET";
+  const comments = await getJsonResponse(urlExtension, method);
+  return comments;
+}
+
+export async function getPostFromId(postId) {
+  const urlExtension = `post/${postId}`;
+  const method = "GET";
+  const post = await getJsonResponse(urlExtension, method);
+  return post;
+}
+
+export async function postComment(postId, commentContent) {
+  const urlExtension = `comment/${postId}`;
+  const method = "POST";
+  const bodyObject = { content: commentContent };
+  await getJsonResponse(urlExtension, method, bodyObject);
+  return;
 }

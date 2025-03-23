@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { getAllPosts } from "../apiFunctions";
+import { Outlet, Link } from "react-router-dom";
 import "../App.css";
 import Header from "../Header";
 import Footer from "../Footer";
@@ -11,7 +12,6 @@ export default function Root() {
     const fetchPosts = async () => {
       const allPosts = await getAllPosts();
       setPostList(allPosts);
-      console.log({ allPosts });
     };
     fetchPosts();
   }, []);
@@ -19,17 +19,20 @@ export default function Root() {
   return (
     <>
       <Header />
-      <div id="sidebar">
-        <h1>Posts</h1>
+      <div>
         <nav>
+          <h2>Posts</h2>
           <ul>
             {postList.map((post) => {
-              <li key={post.id}>
-                <a href={`post/${post.id}`}>{post.title}</a>
-              </li>;
+              return (
+                <li key={post.id}>
+                  <Link to={`post/${post.id}`}>{post.title}</Link>
+                </li>
+              );
             })}
           </ul>
         </nav>
+        <Outlet />
       </div>
       <Footer />
     </>
