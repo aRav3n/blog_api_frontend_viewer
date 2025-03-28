@@ -81,10 +81,12 @@ export default function Post() {
     async function fetchPost() {
       try {
         const currentPost = await getPostFromId(postId);
-        const contentArray = currentPost.content.split("\n");
-        for (let i = 0; i < contentArray.length; i++) {}
-        currentPost.content = contentArray;
-        setPost(currentPost);
+        if (currentPost) {
+          const contentArray = currentPost.content.split("\n");
+          for (let i = 0; i < contentArray.length; i++) {}
+          currentPost.content = contentArray;
+          setPost(currentPost);
+        }
       } catch (error) {
         console.error("Error fetching post:", error);
       }

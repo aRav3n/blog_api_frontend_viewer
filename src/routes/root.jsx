@@ -11,7 +11,12 @@ export default function Root() {
   useEffect(() => {
     const fetchPosts = async () => {
       const allPosts = await getAllPosts();
-      setPostList(allPosts);
+      if (allPosts) {
+        setPostList(allPosts);
+      } else {
+        const tempList = [{ id: 1, title: "Couldn't fetch data" }];
+        setPostList(tempList);
+      }
     };
     fetchPosts();
   }, []);
